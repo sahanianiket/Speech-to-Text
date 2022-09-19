@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/28445ba17a.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>speech to text</title>
+        <link rel ="stylesheet" href="class.css">
+
+            <body>
+              
+               <br><br>
+                <main>
+                    <h2>speech to text</h2>
+                    <textarea name="" id="text" cols="30" rows="10"></textarea>
+                    
+                    <button id="btn">
+                        <i  class="fa-solid fa-microphone"></i>
+                        
+                       </button>
+                </main>
+            
+              
+            </body>
+            <script>
+                var btn = document.getElementById('btn')
+                var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                var recognition = new SpeechRecognition();
+                btn.addEventListener('click', function () {
+                    recognition.start();
+                var text = document.getElementById('text')
+                    text.innerHTML = '...Try to say something';
+                    btn.classList.add('fade')
+
+                })
+                recognition.onresult = function (e) {
+                    var transcript = e.results[0][0].transcript;
+                    text.innerHTML = transcript;
+                }
+            
+            </script>
+            <!-- <script>
+                    
+                var btn = document.querySelector('.btn')
+                btn.addEventListener('click',(ea) =>{
+                    btn.classList.add('fade')
+
+                    let recognition = new webkitSpeechRecognition()
+                    recognition.lang ='en-GB'
+                    recognition.addEventListener('result', (e)=>{
+                        document.querySelector('.text').value = e.results[0][0].transcript
+                        btn.classList.remove('fade')
+                    })
+                    recognition.start()
+                })
+            </script> -->
+        
+    </head>
+
+</html>
